@@ -13,6 +13,8 @@ pre-rendered frames toggled with SMIL <set>, since GitHub runs SMIL/CSS inside
 <img> SVGs but never JS.
 
     python scripts/render_stats_svg.py [data.json] [output.svg]
+
+Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 """
 import datetime
 import json

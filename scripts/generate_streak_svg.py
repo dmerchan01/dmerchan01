@@ -2,6 +2,8 @@
 """Generate an animated GitHub-streak SVG (squares light up one by one).
 Works standalone; designed to run in a GitHub Action daily to stay live.
 Usage: python generate_streak_svg.py [username] [output.svg]
+
+Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 """
 import sys, json, os, datetime, urllib.request
 

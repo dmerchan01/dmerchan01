@@ -11,6 +11,8 @@ GitHub renders SVGs embedded via <img> and runs their SMIL animations there (JS
 does not run). Each row is revealed with a left-to-right clip wipe plus a small
 block cursor riding the wipe edge, staggered top -> bottom, so the whole
 portrait prints once and freezes.
+
+Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 """
 from PIL import Image, ImageEnhance, ImageOps, ImageFilter
 import html

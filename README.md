@@ -1,5 +1,10 @@
 <div align="center">
 
+<!-- Profile design adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29
+     (public profile README repo) -- terminal-style layout, animated
+     contribution graph, ASCII portrait and stats card all follow that
+     original approach, re-implemented here with my own data/photo. -->
+
 <!-- animated contribution graph: real data, boxes reveal cell by cell
      (regenerated daily by .github/workflows/update-profile-art.yml) -->
 

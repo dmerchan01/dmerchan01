@@ -2,6 +2,7 @@ name: Update profile art
 
 # Refreshes the contribution graph + stats card SVGs daily from real data.
 # Runs daily, plus whenever you push to main, plus on-demand.
+# Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 
 "on":
   schedule:

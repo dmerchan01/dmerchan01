@@ -12,6 +12,8 @@ Prepare a portrait photo for clean ASCII conversion:
 Output: source-prepped.png (grayscale), consumed by make_ascii_svg.py.
 
     python scripts/prep_photo.py <input.png> [output.png]
+
+Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 """
 import os
 import sys

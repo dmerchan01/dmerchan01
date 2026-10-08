@@ -7,6 +7,8 @@ write data/contributions.json with the raw days plus derived stats
 
 No token, no auth, no GraphQL -- just the public HTML GitHub already serves.
 Run daily by .github/workflows/update-profile-art.yml.
+
+Adapted from github.com/AVIVASHISHTA29/AVIVASHISHTA29 (public profile README repo).
 """
 import datetime
 import json
