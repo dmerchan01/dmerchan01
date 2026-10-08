@@ -27,7 +27,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 INP = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "source-photo.png")
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "..", "source-prepped.png")
 
-LINE_WEIGHT = 0.6     # how hard fine features are pushed toward black
+LINE_WEIGHT = float(os.environ.get("LINE_WEIGHT", 0.2))      # how hard fine features are pushed toward black
+BILATERAL_ITERS = int(os.environ.get("BILATERAL_ITERS", 7))  # smoothing passes -- higher tames busy hair texture
+SIGMA_COLOR = int(os.environ.get("SIGMA_COLOR", 85))
+ZOOM = float(os.environ.get("ZOOM", 0.78))    # <1 crops tighter around the subject (less torso/shirt in frame)
+Y_BIAS = float(os.environ.get("Y_BIAS", 0.12))  # fraction of crop size to shift the crop center upward
 
 # 1. cut out the subject
 cut = remove(Image.open(INP).convert("RGBA"))
@@ -37,8 +41,8 @@ gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
 
 # 2. smooth texture, keep edges
 smooth = gray
-for _ in range(3):
-    smooth = cv2.bilateralFilter(smooth, 9, 40, 9)
+for _ in range(BILATERAL_ITERS):
+    smooth = cv2.bilateralFilter(smooth, 9, SIGMA_COLOR, 9)
 
 # 3. tone stretch over the subject only
 lo, hi = np.percentile(smooth[alpha > 128], [2, 92])
@@ -55,8 +59,9 @@ mask = cv2.GaussianBlur(alpha.astype(np.float32) / 255.0, (0, 0), 1.0)
 out = out * mask + 255.0 * (1.0 - mask)
 
 ys, xs = np.where(alpha > 20)
-side = max(xs.max() - xs.min(), ys.max() - ys.min()) + 60
+side = int((max(xs.max() - xs.min(), ys.max() - ys.min()) + 60) * ZOOM)
 cx, cy = (xs.min() + xs.max()) // 2, (ys.min() + ys.max()) // 2
+cy -= int(side * Y_BIAS)
 canvas = np.full((side, side), 255, np.uint8)
 x0, y0 = cx - side // 2, cy - side // 2
 sx0, sy0 = max(x0, 0), max(y0, 0)
