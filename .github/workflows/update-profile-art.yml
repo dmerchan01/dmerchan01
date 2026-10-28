@@ -41,3 +41,8 @@ jobs:
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
           file_pattern: "data/contributions.json contrib-heatmap.svg stats.svg"
+          # Commit as the Actions bot so these automated commits don't count
+          # toward the contribution graph / streak.
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
